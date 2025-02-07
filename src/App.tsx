@@ -5,7 +5,7 @@ import ArrowButtons from "./components/arrowButtons";
 
 import Roulette from "./components/roulette";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
-import { forward } from "./store/angleSlice";
+import { angleState, forward } from "./store/angleSlice";
 import { playing } from "./store/playSlice";
 import { playState } from "./store/playSlice";
 import { speedState } from "./store/speedSlice";
@@ -22,16 +22,17 @@ function App() {
   const dispatch = useAppDispatch();
   const play = useAppSelector(playState);
   const speed = useAppSelector(speedState);
+  const playerAngle = useAppSelector(angleState);
 
   useEffect(() => {
     async function delayer() {
-      while (play) {
-        await delay(Math.round(100 / speed));
-        dispatch(forward());
-      }
+      await delay(Math.round(100 / speed));
+      dispatch(forward());
     }
-    delayer();
-  }, [play]);
+    if (play) {
+      delayer();
+    }
+  }, [playerAngle, play]);
 
   useEffect(() => {
     function playCallback(event: Event) {
