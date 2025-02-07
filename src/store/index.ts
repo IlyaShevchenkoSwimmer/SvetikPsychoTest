@@ -3,6 +3,7 @@ import speedSlice from "./speedSlice";
 import angleSlice from "./angleSlice";
 import angleClientSlice from "./angleClientSlice";
 import playSlice from "./playSlice";
+import roundSlice from "./roundSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     angle: angleSlice,
     angleClient: angleClientSlice,
     play: playSlice,
+    round: roundSlice,
   },
 });
 

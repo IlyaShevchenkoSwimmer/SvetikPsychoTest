@@ -2,13 +2,14 @@ import { useEffect } from "react";
 
 import "./App.css";
 import ArrowButtons from "./components/arrowButtons";
-
+import Speed from "./components/Speed";
 import Roulette from "./components/roulette";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
 import { angleState, forward } from "./store/angleSlice";
 import { playing } from "./store/playSlice";
 import { playState } from "./store/playSlice";
 import { speedState } from "./store/speedSlice";
+import { nextRound } from "./store/roundSlice";
 
 function delay(ms: number) {
   return new Promise((resolve) =>
@@ -39,7 +40,10 @@ function App() {
       let isButton: boolean = false;
       const buttons = document.querySelectorAll("button");
       buttons.forEach((button) => {
-        if (button === (event.target as HTMLElement).parentElement) {
+        if (
+          button === (event.target as HTMLElement).parentElement ||
+          button === (event.target as HTMLElement)
+        ) {
           isButton = true;
         }
       });
@@ -49,10 +53,12 @@ function App() {
     }
     document.addEventListener("click", playCallback);
   }, []);
+
   return (
     <main className="flex flex-col justify-center items-center h-svh overflow-hidden">
       <Roulette />
       <ArrowButtons />
+      <Speed />
     </main>
   );
 }
