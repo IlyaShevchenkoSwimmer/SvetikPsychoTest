@@ -113,7 +113,7 @@ function App() {
   useEffect(() => {
     if (results.value.length === 15) {
       try {
-        fetch("http://localhost:8080/addresult", {
+        fetch("https://svetiktgbotback.onrender.com/addresult", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(results.value),
