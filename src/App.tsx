@@ -111,18 +111,13 @@ function App() {
   }, [round]);
 
   useEffect(() => {
-    if (results.value.length === 3) {
+    if (results.value.length === 15) {
       try {
-        fetch("https://dummyjson.com/posts/add", {
+        fetch("http://localhost:8080/addresult", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            userId: 1,
-            value: results.value,
-          }),
-        })
-          .then((res) => res.json())
-          .then((data) => console.log(data));
+          body: JSON.stringify(results.value),
+        });
       } catch (error) {
         console.log(error);
       }
