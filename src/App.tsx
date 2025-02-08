@@ -2,9 +2,9 @@ import { useCallback, useEffect } from "react";
 import store from "./store";
 
 import "./App.css";
-import ArrowButtons from "./components/arrowButtons";
-import Speed from "./components/Speed";
-import Roulette from "./components/roulette";
+import ArrowButtons from "./components/ArrowButtons";
+import Speed from "./components/Speed.tsx";
+import Roulette from "./components/Roulette.tsx";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
 import { angleState, forward, setInit } from "./store/angleSlice";
 import { playing } from "./store/playSlice";
