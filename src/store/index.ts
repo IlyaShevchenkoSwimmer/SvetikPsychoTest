@@ -4,6 +4,8 @@ import angleSlice from "./angleSlice";
 import angleClientSlice from "./angleClientSlice";
 import playSlice from "./playSlice";
 import roundSlice from "./roundSlice";
+import ballZIndexSlice from "./ballZIndexSlice";
+import resultsSlice from "./resultsSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +14,8 @@ const store = configureStore({
     angleClient: angleClientSlice,
     play: playSlice,
     round: roundSlice,
+    zIndex: ballZIndexSlice,
+    results: resultsSlice,
   },
 });
 

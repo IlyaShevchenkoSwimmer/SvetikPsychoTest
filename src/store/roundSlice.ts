@@ -3,10 +3,16 @@ import type { RootState } from "./index";
 
 export interface roundInitState {
   value: number;
+  modalPos: number;
+  modalVis: "visible" | "hidden";
+  modalOp: number;
 }
 
 const initialState: roundInitState = {
   value: 1,
+  modalPos: -50,
+  modalVis: "hidden",
+  modalOp: 0,
 };
 
 const roundSlice = createSlice({
@@ -14,7 +20,14 @@ const roundSlice = createSlice({
   initialState,
   reducers: {
     nextRound: (state) => {
-      state.value += 1;
+      if (state.value === 15) {
+        state.modalVis = "visible";
+        state.modalPos = 200;
+        state.modalOp = 1;
+      }
+      if (state.value < 15) {
+        state.value += 1;
+      }
     },
   },
 });
@@ -22,5 +35,6 @@ const roundSlice = createSlice({
 export const { nextRound } = roundSlice.actions;
 
 export const roundState = (state: RootState) => state.round.value;
+export const modalState = (state: RootState) => state.round;
 
 export default roundSlice.reducer;

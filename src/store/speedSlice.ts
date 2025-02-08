@@ -19,10 +19,13 @@ const speedSlice = createSlice({
     slower: (state) => {
       state.value = state.value - 1 < 1 ? 1 : state.value - 1;
     },
+    setSpeed: (state, action) => {
+      state.value = action.payload.value;
+    },
   },
 });
 
-export const { faster, slower } = speedSlice.actions;
+export const { faster, slower, setSpeed } = speedSlice.actions;
 
 export const speedState = (state: RootState) => state.speed.value;
 
