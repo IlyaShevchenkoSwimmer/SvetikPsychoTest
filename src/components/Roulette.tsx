@@ -10,7 +10,7 @@ function Roulette() {
 
   return (
     <>
-      <article className="w-[50vw] h-[50vw] md:w-[40vw] md:h-[40vw] lg:w-[30vw] lg:h-[30vw] relative">
+      <article className="w-[50vw] h-[50vw] md:w-[30vw] md:h-[30vw] lg:w-[20vw] lg:h-[20vw] relative">
         <div className="absolute w-full h-full border-15 border-solid  border-black rounded-full z-0"></div>
         <div className="absolute w-full h-full border-15 border-solid  border-transparent border-r-green-600 border-t-green-600 rounded-full rotate-[45deg] z-1"></div>
         <div className="absolute w-full h-full border-15 border-solid  border-transparent border-l-red-600 border-t-red-600 rounded-full rotate-[-45deg] z-3"></div>

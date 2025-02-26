@@ -18,11 +18,17 @@ const angleClientSlice = createSlice({
       if (state.value === 240) {
         state.value = 310;
       }
+      if (state.value === 40) {
+        state.value = 150;
+      }
     },
     backwardClient: (state) => {
       state.value = state.value - 10 < 0 ? 350 : state.value - 10;
       if (state.value === 300) {
         state.value = 230;
+      }
+      if (state.value === 140) {
+        state.value = 30;
       }
     },
     setInitClient: (state) => {
