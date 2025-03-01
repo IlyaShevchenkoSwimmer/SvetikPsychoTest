@@ -1,5 +1,6 @@
 import { agreed, agreeFormState } from "../store/agreeFormSlice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { addUser } from "../store/userInfoSlice";
 
 export default function AgreeForm() {
   const dispatch = useAppDispatch();
@@ -24,10 +25,16 @@ export default function AgreeForm() {
           const birthDate = (
             document.getElementById("birth-date") as HTMLInputElement
           ).value;
-          console.log(firstName, lastName, birthDate);
+          dispatch(
+            addUser({
+              name: firstName,
+              lastname: lastName,
+              birthdate: birthDate,
+            })
+          );
           dispatch(agreed());
         }}
-        className="w-[80%] h-100 p-3 flex flex-col gap-2 bg-linear-to-bl from-violet-500 to-fuchsia-500 rounded-lg text-amber-50"
+        className="w-[80%] h-100 p-3 flex flex-col gap-2 justify-around bg-linear-to-bl from-violet-500 to-fuchsia-500 rounded-lg text-amber-50"
       >
         <input
           type="text"
@@ -58,8 +65,8 @@ export default function AgreeForm() {
         <div className="flex items-start gap-2">
           <input type="checkbox" className="mt-1 accent-blue-500" required />
           <span>
-            Я даю согласие на обработку персональных данных и ознакомлен с
-            условиями тестирования
+            С видео-инструкцией ознакомлен и даю согласие на участие в
+            исследовании
           </span>
         </div>
 

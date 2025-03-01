@@ -20,19 +20,24 @@ const roundSlice = createSlice({
   initialState,
   reducers: {
     nextRound: (state) => {
-      if (state.value === 15) {
-        state.modalVis = "visible";
-        state.modalPos = 200;
-        state.modalOp = 1;
-      }
+      // if (state.value === 15) {
+      //   state.modalVis = "visible";
+      //   state.modalPos = 200;
+      //   state.modalOp = 1;
+      // }
       if (state.value < 15) {
         state.value += 1;
       }
     },
+    setModal: (state) => {
+      state.modalVis = "visible";
+      state.modalPos = 200;
+      state.modalOp = 1;
+    },
   },
 });
 
-export const { nextRound } = roundSlice.actions;
+export const { nextRound, setModal } = roundSlice.actions;
 
 export const roundState = (state: RootState) => state.round.value;
 export const modalState = (state: RootState) => state.round;

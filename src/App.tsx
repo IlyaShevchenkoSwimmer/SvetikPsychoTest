@@ -7,10 +7,10 @@ import Speed from "./components/Speed.tsx";
 import Roulette from "./components/Roulette.tsx";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
 import { angleState, forward, setInit } from "./store/angleSlice";
-import { playing } from "./store/playSlice";
+import { failed, playing, setInitSuccess, succeed } from "./store/playSlice";
 import { playState } from "./store/playSlice";
 import { setSpeed, speedState } from "./store/speedSlice";
-import { nextRound, roundState } from "./store/roundSlice";
+import { nextRound, roundState, setModal } from "./store/roundSlice";
 import { setInitClient } from "./store/angleClientSlice";
 import { setBottom, setTop } from "./store/ballZIndexSlice";
 import ThankModal from "./components/ThankModal";
@@ -89,11 +89,20 @@ function App() {
         madeCircles: fixedResults.angle.circles,
       };
       dispatch(addResult({ value: resultsForPush }));
+      if (
+        store.getState().angle.value >= 233 &&
+        store.getState().angle.value <= 307
+      ) {
+        dispatch(failed());
+      } else {
+        dispatch(succeed());
+      }
 
       document.removeEventListener("click", stopCallback);
       setTimeout(() => {
         dispatch(setInitClient());
         dispatch(setInit());
+        dispatch(setInitSuccess());
         dispatch(setBottom());
         dispatch(nextRound());
       }, 3000);
@@ -114,11 +123,14 @@ function App() {
 
   useEffect(() => {
     if (results.value.length === 15) {
+      const person = store.getState().userInfo;
       try {
         fetch("https://svetiktgbotback.onrender.com/addresult", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(results.value),
+          body: JSON.stringify({ person, results: results.value }),
+        }).then(() => {
+          dispatch(setModal());
         });
       } catch (error) {
         console.log(error);
@@ -130,7 +142,7 @@ function App() {
     <>
       <AgreeForm />
       <ThankModal />
-      <main className="flex flex-col justify-center items-center h-svh overflow-hidden">
+      <main className="flex flex-col justify-center items-center h-svh overflow-hidden relative">
         <h1 className="mb-8 text-center">
           {Math.ceil(round / 5) === 1
             ? "Тренировка на низкой скорости"

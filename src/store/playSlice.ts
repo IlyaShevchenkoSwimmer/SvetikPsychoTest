@@ -3,10 +3,14 @@ import type { RootState } from "./index";
 
 export interface playInitState {
   value: boolean;
+  success: boolean;
+  failure: boolean;
 }
 
 const initialState: playInitState = {
   value: false,
+  success: false,
+  failure: false,
 };
 
 const playSlice = createSlice({
@@ -16,10 +20,20 @@ const playSlice = createSlice({
     playing: (state) => {
       state.value = !state.value;
     },
+    succeed: (state) => {
+      state.success = true;
+    },
+    failed: (state) => {
+      state.failure = true;
+    },
+    setInitSuccess: (state) => {
+      state.success = false;
+      state.failure = false;
+    },
   },
 });
 
-export const { playing } = playSlice.actions;
+export const { playing, succeed, failed, setInitSuccess } = playSlice.actions;
 
 export const playState = (state: RootState) => state.play.value;
 
