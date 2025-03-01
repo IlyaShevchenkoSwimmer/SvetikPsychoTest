@@ -14,8 +14,10 @@ import { nextRound, roundState } from "./store/roundSlice";
 import { setInitClient } from "./store/angleClientSlice";
 import { setBottom, setTop } from "./store/ballZIndexSlice";
 import ThankModal from "./components/ThankModal";
+import AgreeForm from "./components/AgreeForm.tsx";
 
 import { addResult, Result, resultsState } from "./store/resultsSlice";
+import { agreeFormState } from "./store/agreeFormSlice.ts";
 
 function delay(ms: number) {
   return new Promise((resolve) =>
@@ -31,7 +33,7 @@ function App() {
   const speed = useAppSelector(speedState);
   const playerAngle = useAppSelector(angleState);
   const results = useAppSelector(resultsState);
-
+  const agreed = useAppSelector(agreeFormState);
   const round = useAppSelector(roundState);
 
   useEffect(() => {
@@ -99,10 +101,10 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!play) {
+    if (!play && agreed) {
       document.addEventListener("click", playCallback);
     }
-  }, [round]);
+  }, [round, agreed]);
 
   useEffect(() => {
     if (round > 5 && round < 11) {
@@ -126,6 +128,7 @@ function App() {
 
   return (
     <>
+      <AgreeForm />
       <ThankModal />
       <main className="flex flex-col justify-center items-center h-svh overflow-hidden">
         <h1 className="mb-8 text-center">

@@ -6,6 +6,7 @@ import playSlice from "./playSlice";
 import roundSlice from "./roundSlice";
 import ballZIndexSlice from "./ballZIndexSlice";
 import resultsSlice from "./resultsSlice";
+import agreeFormSlice from "./agreeFormSlice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     round: roundSlice,
     zIndex: ballZIndexSlice,
     results: resultsSlice,
+    agree: agreeFormSlice,
   },
 });
 
