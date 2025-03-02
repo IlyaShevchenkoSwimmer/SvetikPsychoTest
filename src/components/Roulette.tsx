@@ -32,10 +32,34 @@ function Roulette() {
         <div
           className="absolute w-full text-center self-center text-green-600"
           style={{
-            visibility: store.getState().play.success ? "visible" : "hidden",
+            visibility:
+              store.getState().play.success &&
+              store.getState().angleClient.value - 15 <
+                store.getState().angle.value &&
+              store.getState().angleClient.value + 15 >
+                store.getState().angle.value
+                ? "visible"
+                : "hidden",
           }}
         >
-          Успех
+          Отличная попытка
+        </div>
+        <div
+          className="absolute w-full text-center self-center text-green-600"
+          style={{
+            visibility:
+              store.getState().play.success &&
+              !(
+                store.getState().angleClient.value - 15 <
+                  store.getState().angle.value &&
+                store.getState().angleClient.value + 15 >
+                  store.getState().angle.value
+              )
+                ? "visible"
+                : "hidden",
+          }}
+        >
+          Неплохая попытка
         </div>
         <div
           className="absolute w-full text-center self-center text-red-600"
@@ -43,7 +67,19 @@ function Roulette() {
             visibility: store.getState().play.failure ? "visible" : "hidden",
           }}
         >
-          Провал
+          Неудачная попытка
+          <div
+            className="w-full text-center"
+            style={{
+              visibility:
+                store.getState().play.failure &&
+                store.getState().round.value > 10
+                  ? "visible"
+                  : "hidden",
+            }}
+          >
+            Идет определение необходимости наказания...
+          </div>
         </div>
       </article>
     </>
