@@ -12,7 +12,7 @@ export default function ThankModal() {
         opacity: modal.modalOp,
       }}
     >
-      <h1>Благодарим за участие!</h1>
+      <h1 id="thank-modal-header">Подождите, фиксируем результаты...</h1>
     </section>
   );
 }

@@ -104,6 +104,9 @@ function App() {
         dispatch(setInit());
         dispatch(setInitSuccess());
         dispatch(setBottom());
+        if (store.getState().round.value === 15) {
+          dispatch(setModal());
+        }
         dispatch(nextRound());
       }, 3000);
     }
@@ -130,7 +133,10 @@ function App() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ person, results: results.value }),
         }).then(() => {
-          dispatch(setModal());
+          const thankModalHeader =
+            document.getElementById("thank-modal-header");
+          (thankModalHeader as HTMLElement).innerHTML =
+            "Благодарим за участие!";
         });
       } catch (error) {
         console.log(error);
@@ -143,7 +149,7 @@ function App() {
       <AgreeForm />
       <ThankModal />
       <main className="flex flex-col justify-center items-center h-svh overflow-hidden relative">
-        <h1 className="mb-8 text-center">
+        <h1 className="mb-8 text-center text-xl">
           {Math.ceil(round / 5) === 1
             ? "Тренировка на низкой скорости"
             : Math.ceil(round / 5) === 2
