@@ -30,7 +30,7 @@ function Roulette() {
           <div className="absolute w-0 h-0 top-[-15px] border-10 border-solid border-transparent border-t-amber-400"></div>
         </div>
         <div
-          className="absolute w-full text-center self-center text-green-600"
+          className="absolute w-full text-center self-center text-green-600 z-[200]"
           style={{
             visibility:
               store.getState().play.success &&
@@ -45,7 +45,7 @@ function Roulette() {
           Отличная попытка
         </div>
         <div
-          className="absolute w-full text-center self-center text-green-600"
+          className="absolute w-full text-center self-center text-green-600 z-[200]"
           style={{
             visibility:
               store.getState().play.success &&
@@ -62,14 +62,14 @@ function Roulette() {
           Неплохая попытка
         </div>
         <div
-          className="absolute w-full text-center self-center text-red-600"
+          className="absolute w-full text-center self-center text-red-600 z-[200]"
           style={{
             visibility: store.getState().play.failure ? "visible" : "hidden",
           }}
         >
           Неудачная попытка
           <div
-            className="w-full text-center"
+            className="w-full text-center z-[200]"
             style={{
               visibility:
                 store.getState().play.failure &&
@@ -78,7 +78,7 @@ function Roulette() {
                   : "hidden",
             }}
           >
-            Идет определение необходимости наказания...
+            Определяется дальнейший ход игры…
           </div>
         </div>
       </article>
