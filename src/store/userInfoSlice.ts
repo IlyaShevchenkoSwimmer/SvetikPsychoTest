@@ -4,13 +4,13 @@ import type { RootState } from "./index";
 export interface userInfoInitState {
   name: string;
   lastname: string;
-  birthdate: string;
+  age: string;
 }
 
 const initialState: userInfoInitState = {
   name: "",
   lastname: "",
-  birthdate: "",
+  age: "",
 };
 
 const userInfoSlice = createSlice({
@@ -20,7 +20,7 @@ const userInfoSlice = createSlice({
     addUser: (state, action) => {
       state.name = action.payload.name;
       state.lastname = action.payload.lastname;
-      state.birthdate = action.payload.birthdate;
+      state.age = action.payload.age;
     },
   },
 });

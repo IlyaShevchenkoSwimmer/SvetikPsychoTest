@@ -29,7 +29,7 @@ export default function AgreeForm() {
             addUser({
               name: firstName,
               lastname: lastName,
-              birthdate: birthDate,
+              age: birthDate,
             })
           );
           dispatch(agreed());
@@ -51,14 +51,12 @@ export default function AgreeForm() {
           required
         />
 
-        <label htmlFor="birth-date" className="mt-3">
-          Ваша дата рождения
-        </label>
         <input
-          type="date"
+          type="text"
+          placeholder="Ваш возраст"
           id="birth-date"
           name="birth-date"
-          className="rounded-lg bg-cyan-800 p-3 border-2 border-solid border-transparent outline-0 focus:border-2 focus:border-solid focus:border-blue-500 "
+          className="rounded-lg bg-cyan-800 p-3 border-2 border-solid border-transparent outline-0 focus:border-2 focus:border-solid focus:border-blue-500 placeholder:text-amber-50"
           required
         />
 
