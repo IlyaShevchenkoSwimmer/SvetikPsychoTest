@@ -128,7 +128,7 @@ function App() {
     if (results.value.length === 15) {
       const person = store.getState().userInfo;
       try {
-        fetch("https://svetiktgbotback.onrender.com/addresult", {
+        fetch("http://95.163.229.62:8080/addresult", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ person, results: results.value }),
